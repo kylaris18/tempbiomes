@@ -94,6 +94,7 @@
                       <?php
                      include 'database/database.php';
                      $pdo = Database::connect();
+
                      $sql = 'SELECT tbl_fgd.fgd_id, tbl_pasu.pasu_fname, tbl_pasu.pasu_lname, tbl_protected_area.pa_name, tbl_fgd.fgd_quarter, tbl_fgd.fgd_year
                       FROM tbl_fgd
                       INNER JOIN tbl_pasu
@@ -103,21 +104,56 @@
                       ON tbl_fgd.pa_id=tbl_protected_area.pa_id';
 
                      foreach ($pdo->query($sql) as $row) {
+
+                              $sqlFirst = "SELECT  (
+                                          SELECT COUNT(fgd_id)
+                                          FROM   tbl_fgd_format1 WHERE fgd_id = {$row['fgd_id']}
+                                          ) AS count1,
+                                          (
+                                          SELECT COUNT(*)
+                                          FROM   tbl_fgd_format2 WHERE fgd_id = {$row['fgd_id']}
+                                          ) AS count2,
+                                          (
+                                          SELECT COUNT(*)
+                                          FROM   tbl_fgd_format3 WHERE fgd_id = {$row['fgd_id']}
+                                          ) AS count3
+                                  FROM    DUAL";
+
+                                  //echo $sqlFirst;
+                               foreach ($pdo->query($sqlFirst) as $row1) {
+                                }
+
+
+                                $stat1 = 'disabled';
+                                 $stat2 = 'disabled';
+                                 $stat3 = 'disabled';
+
+                                 if ($row1['count1'] != 0) {
+                                   $stat1 = '';
+                                 }
+                                 if ($row1['count2'] != 0) {
+                                   $stat2 = '';
+                                 }
+                                 if ($row1['count3'] != 0) {
+                                   $stat3 = '';
+                                 }
+
+
                               echo '<tr>';
                               echo '<td>'. $row['fgd_id'] . '</td>';
                               echo '<td>'. $row['pasu_fname'] . ' ' . $row['pasu_lname'] . '</td>';
                               echo '<td>'. $row['pa_name'] . '</td>';
-                              echo '<td>'. $row['fgd_quarter'] . ' / ' . $row['fgd_year'] . '</td>';
+                              echo '<td><div class="text-center">'. $row['fgd_quarter'] . ' / ' . $row['fgd_year'] . '</div></td>';
                               echo '<td>
-                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['fgd_id'] . '" onclick = getData("format1",'. $row['fgd_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['fgd_id'] . '" onclick = getData("format1",'. $row['fgd_id'] . '); '.$stat1.'>View</button>
                               </td>
                               <td>
-                                <button class="btn btn-block center-block bg-maroon btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat2'. $row['fgd_id'] . '" onclick = getData("format2",'. $row['fgd_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-maroon btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat2'. $row['fgd_id'] . '" onclick = getData("format2",'. $row['fgd_id'] . '); '.$stat2.'>View</button>
                               </td>
                               <td>
-                                <button class="btn btn-block center-block bg-orange btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat3'. $row['fgd_id'] . '" onclick = getData("format3",'. $row['fgd_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-orange btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat3'. $row['fgd_id'] . '" onclick = getData("format3",'. $row['fgd_id'] . '); '.$stat3.'>View</button>
                               </td>
-                              <td>
+                              <td><div class="text-center">
                                 <div class="btn-group">
                                 <button type="button" onclick="changeStat(0, '.$row['fgd_id'].', 0)" class="btn btn-sm btn-info">Approve</button>
                                 <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
@@ -129,7 +165,7 @@
                                   <li><a onClick="changeStat(1, '.$row['fgd_id'].',0); return false;" href="#">Reject</a></li>
                                 </ul>
                               </div>
-                              </td>';
+                              </div></td>';
                               echo '</tr>';
                      }
                      Database::disconnect();
@@ -461,7 +497,7 @@
           $.ajax({
             url: 'model/modal_changeStatus.php',
             type: 'post',
-            data: { ID: fgdID, type: type, mode: method }, // mode tska value ung nasa array ng _POST.
+            data: { ID: fgdID, type: type, mode: method }, // mode 0 = fgd, 1 = field diary, 2 = photo doc, 3 = transect
             success: function(result) {
               swal("Nice!", "You successfully approved the request!", "success");
               setTimeout(function(){ window.location.reload(true); }, 1500);

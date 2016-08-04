@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/AdminLTE.css">
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="../dist/css/sweetalert.css">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
@@ -98,33 +102,69 @@
                       ON tbl_transect.pa_id=tbl_protected_area.pa_id';
 
                      foreach ($pdo->query($sql) as $row) {
+
+                              $sqlFirst = "SELECT  (
+                                          SELECT COUNT(tsect_id)
+                                          FROM   tbl_transect_walk WHERE tsect_id = {$row['tsect_id']}
+                                          ) AS count1,
+                                          (
+                                          SELECT COUNT(*)
+                                          FROM   tbl_transect_swim WHERE tsect_id = {$row['tsect_id']}
+                                          ) AS count2,
+                                          (
+                                          SELECT COUNT(*)
+                                          FROM   tbl_transect_cruise WHERE tsect_id = {$row['tsect_id']}
+                                          ) AS count3
+                                  FROM    DUAL";
+
+                                  //echo $sqlFirst;
+                               foreach ($pdo->query($sqlFirst) as $row1) {
+                                }
+
+
+                                $stat1 = 'disabled';
+                                 $stat2 = 'disabled';
+                                 $stat3 = 'disabled';
+
+                                 if ($row1['count1'] != 0) {
+                                   $stat1 = '';
+                                 }
+                                 if ($row1['count2'] != 0) {
+                                   $stat2 = '';
+                                 }
+                                 if ($row1['count3'] != 0) {
+                                   $stat3 = '';
+                                 }
+
+
+
                               echo '<tr>';
                               echo '<td>'. $row['tsect_id'] . '</td>';
                               echo '<td>'. $row['pasu_fname'] . ' ' . $row['pasu_lname'] . '</td>';
                               echo '<td>'. $row['pa_name'] . '</td>';
-                              echo '<td>'. $row['tsect_quarter'] . ' / ' . $row['tsect_year'] . '</td>';
+                              echo '<td><div class="text-center">'. $row['tsect_quarter'] . ' / ' . $row['tsect_year'] . '</div></td>';
                               echo '<td>
-                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['tsect_id'] . '" onclick = getData("walk",'. $row['tsect_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['tsect_id'] . '" onclick = getData("walk",'. $row['tsect_id'] . '); '.$stat1.'>View</button>
                               </td>
                               <td>
-                                <button class="btn btn-block center-block bg-maroon btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat2'. $row['tsect_id'] . '" onclick = getData("swim",'. $row['tsect_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-maroon btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat2'. $row['tsect_id'] . '" onclick = getData("swim",'. $row['tsect_id'] . '); '.$stat2.'>View</button>
                               </td>
                               <td>
-                                <button class="btn btn-block center-block bg-orange btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat3'. $row['tsect_id'] . '" onclick = getData("cruise",'. $row['tsect_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-orange btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat3'. $row['tsect_id'] . '" onclick = getData("cruise",'. $row['tsect_id'] . '); '.$stat3.'>View</button>
                               </td>
-                              <td>
+                              <td><div class="text-center">
                                 <div class="btn-group">
-                                <button type="button" onclick="changeStat(0, '.$row['tsect_id'].', 0)" class="btn btn-sm btn-info">Approve</button>
+                                <button type="button" onclick="changeStat(0, '.$row['tsect_id'].', 3)" class="btn btn-sm btn-info">Approve</button>
                                 <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a onClick="changeStat(0, '.$row['tsect_id'].',0); return false;" href="#">Accept</a></li>
-                                  <li><a onClick="changeStat(1, '.$row['tsect_id'].',0); return false;" href="#">Reject</a></li>
+                                  <li><a onClick="changeStat(0, '.$row['tsect_id'].',3); return false;" href="#">Accept</a></li>
+                                  <li><a onClick="changeStat(1, '.$row['tsect_id'].',3); return false;" href="#">Reject</a></li>
                                 </ul>
                               </div>
-                              </td>';
+                              </div></td>';
                               echo '</tr>';
                      }
                      Database::disconnect();
@@ -191,6 +231,8 @@
     <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="../plugins/fastclick/fastclick.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="../dist/js/sweetalert.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
@@ -644,6 +686,47 @@
             $('#modal_body').html("error");
             $('#modal_title').html("There is an error. Please try");
           }
+        });
+      }
+
+      function changeStat(type, methodID, mode){
+        var titleText = '';
+        var confirmColor = '';
+
+        //0 is accept, 1 is reject
+        if (type == 0) {
+          titleText = 'Accept Report?';
+          confirmColor = '#00A65A';          
+        } else{
+          titleText = 'Reject Report?';
+          confirmColor = '#d9534f';
+        };
+
+        console.log(titleText);
+
+
+        swal({
+          title: titleText,
+          text: "Please check content before proceeding. You will not be able to undo this action later.",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: confirmColor,
+          confirmButtonText: 'Yes, please.',
+          closeOnConfirm: false
+        },
+        function(){
+          $.ajax({
+            url: 'model/modal_changeStatus.php',
+            type: 'post',
+            data: { ID: methodID, type: type, mode: mode }, // mode 0 = fgd, 1 = field diary, 2 = photo doc, 3 = transect
+            success: function(result) {
+              swal("Nice!", "You successfully approved the request!", "success");
+              setTimeout(function(){ window.location.reload(true); }, 1500);
+            },
+            error: function(error) {
+              alert(error);
+            }
+          });
         });
       }
     </script>
