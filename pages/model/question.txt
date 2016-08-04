@@ -1,0 +1,101 @@
+legend:
+* - pangyayare
+! - direktang deskripsyon ky rizal
+@ - enumeration
+# - classification
+% - person
+^ - taon
+
+
+
+*pagkatapos ng madrid, pumuntang alemanya, optalmolohiya expert, para gamutin ang ina
+
+!katulong ng mga okulista s eu.
+
+@tuloy ang byahe sa
+	paris, heidleberg, leipzig, berlin
+upang pagaralan (eu)
+	buhay
+	kaugalian
+	batas
+	pamahalaan
+
+#berlin - kabisera ng alemanya
+
+@nakilala / naging kaibigang syentipiko
+	dr. feodor jagor
+	dr. adolph b meyer
+	dr. hans meyer
+	dr. rudolf virchow
+
+*kinilala ang kanyang merito ng mga kilalang scientipiko ng eu.
+
+!masayang paris (1885 - 1886)
+
+!24 yrs old - isa ng manggagamot at papuntang paris para mag masters ng optalmolohiya
+
+%maximo viola - magaaral ng medisina, kabilang s mayamang pamilya sa san miguel, bulacan
+			   dinaanan ni rizal sa barcelona otw sa paris. tumigil si rizal ng 1 week
+
+%señor eusebio corominas - naging kaibigan ni rizal s 1 week stay nya sa barcelona
+						- patnugot ng pahayagang "la publicidad"
+						- gumuhit ng larawan ni Dr. Miguel Morayta
+
+%dr. miguel Morayta   	- may ari ng "la publicidad"
+						- isang estadista
+
+*binigyan ni rizal si corominas ng isang artikulo tungkol sa kontrobersya sa carolines para ilathala
+
+^nov 1885 - nanirahan si rizal sa paris ng 4 months nagttrabaho bilang katulong ni %dr. louis de weckert ^(1852 - 1906) mula ^nov 1885 - feb 1886.
+
+%dr louis de weckert (1852 - 1906) - nangungunang optalmolohistang pranses
+
+!^ enero 1 1886 - nagkwento si rizal sa kanyang mga magulang
+				- "sa larangan ng pagaaral ng mga sakit sa mata, mabuti nman ang nangyare sakin. marunong na ako sa lahat ng klaseng operasyon, kailangan ko na lamang malaman kung ano ang nasa loob ng mata, na kailangan naman ng marami pang pagaaral at pagsasanay."
+
+@mga kaibigang binibisita ni rizal pagkatapos ng gawain kay dr. weckert
+	pamilyang pardo de tavera (trinidad, felix, paz)
+	juan luna
+	felix resurreccion hidalgo
+
+%paz padro de tavera - magandang binibini, kasintahan ni juan luna
+					 - ^gumuhit si rizal ng mga larawan tungkol sa kwentong "ang matsing at ang pagong" sa album nya
+
+%juan luna - dakilang maestro sa pagpipinta
+		   - nakipagtalakayan si rizal ng mga suliranin sa sining at pinaghusay ang sariling teknik sa pagpinta
+
+*^maliligayang oras ni rizal sa estudyo ni juan luna
+
+@pinag modelo-han ni rizal
+		- kambas, "kamatayan ni cleopatra" - paring ehipto
+		- kambas, "sanduguan" - sikatuna(rizal), legaspi(trinidad pardo de tavera)
+
+@mga lugar na naging mahalaga ang musika sa pagtitipon ng mga pilipino
+		- barcelona
+		- madrid
+		- paris
+		- iba pang lungsod sa eu
+
+!marunong kumanta at tumugtog ng instrumento ang mga kapanabay n pilipino ni rizal
+
+@pinatutugtog sa mga pagtitipon sa tahanan ng mga pardo de tavera at estudyo ni luna
+		- kundiman
+		- melodyang pilipino
+
+!di mahilig sa musika si rizal, ngunit nagaral parin sya nito dahil karamihan s kanyang kamag aral sa ateneo ay kumuha ng aralin s musika
+
+!^ nov 27 1878	- sumulat sya kay enrique lete
+				- "natuto sya ng solfeggio, piano, at pagkanta sa loob ng isa at kalahating buwan."
+				- hindi parin sya nakakakanta ng maayos
+				- "kung maririnig mo lamang ang aking boses, mamabutihin mo pang ikaw ay nasa espanya dahil ang boses ko ay tulad ng pag unga ng mga asno."
+
+#pag unga ng mga asno - deskripsyon ni rizal sa kanyang pagkanta
+
+!natutong tumugtog ng plauta dahil sa
+			- determinasyon
+			- pagsasanay
+
+
+
+
+

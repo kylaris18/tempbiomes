@@ -1,0 +1,75 @@
+.biomes-block img{
+	width: 205px;
+	height: 65px;
+	position: relative;
+	top: 35px;
+	left: 500px;
+}
+
+.label-block {
+	width: 380px;
+	height: 90px;
+	position: relative;
+	top: 50px;
+	left: 430px;
+}
+
+.label-block span {
+	color: #192226;
+	font-family: Century Gothic;
+	font-size: 14px;
+}
+
+.form-block {
+    width: 350px;
+    height: 250px;
+    padding: 20px;
+    background: #F7F7F7;
+    border: 1px 1px 1px 1px solid #F7F7F7;
+    position: relative;
+    top: 20px;
+    margin: 0 auto;
+    box-shadow: 0 5px 5px 0 #888888;
+}
+
+.form-block img {
+	width:90px;
+	height:80px;
+	position: relative;
+	left: 125px;
+}
+
+.form-block input {
+    width: 350px;
+    height: 42px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Century Gothic;
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+
+.form-block input:active, .form-block input:focus {
+    border: 1px solid #6FAA54;
+}
+
+.form-block button {
+    width: 350px;
+    height: 40px;
+    background: #288798;
+    box-sizing: border-box;
+    border: 1px solid #288798;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Century Gothic;
+    outline: none;
+    cursor: pointer;
+}
+
+.form-block button:hover {
+    background: #247685;
+}
