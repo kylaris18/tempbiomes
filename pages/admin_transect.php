@@ -211,6 +211,7 @@
     <script>
       function getData(type, valueID){
         console.log(type);
+        console.log(valueID);
         $.ajax({
           url: 'model/model_transect.php',
           type: 'post',

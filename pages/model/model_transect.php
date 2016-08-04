@@ -5,12 +5,12 @@
 $data = array();
 
 $mode = $_POST['mode'];
-// $mode = 'walk';
+//$mode = 'walk';
 require '../database/database.php';
 if ($mode == "walk")
 {
 	$value = $_POST['value'];
-	// $value = 1;
+	//$value = 1;
 	function getData($value){
 		$pdo = Database::connect();
 		$sql = 'SELECT *
@@ -65,15 +65,18 @@ elseif ($mode == "swim")
 }
 elseif ($mode == "cruise")
 {
-	$pdo = Database::connect();
+	$value = $_POST['value'];
+	//$value = 1;
+	function getData($value){
+		$pdo = Database::connect();
 		$sql = 'SELECT *
-				FROM tbl_transect_cruise
+				FROM tbl_transect_walk
 				WHERE tsect_id = '.$value;
 		$STH = $pdo->query($sql);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 
 		while($row = $STH->fetch()) {
-		    $result['tcruise_id'][] = $row['tcruise_id'];
+		    $result['twalk_id'][] = $row['twalk_id'];
 		    $result['tsect_id'][] = $row['tsect_id'] ;
 		    $result['twalk_location'][] = $row['twalk_location'] ;
 		    $result['twalk_observer'][] = $row['twalk_observer'] ;
