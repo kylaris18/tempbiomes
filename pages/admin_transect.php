@@ -503,13 +503,13 @@
 
               var locality = [];
 
-              locality[0] = result[0]['twalk_location'][0];
+              locality[0] = result[0]['tcruise_location'][0];
 
-              for (var i = 1; i < result[0]['twalk_location'].length; i++) {
+              for (var i = 1; i < result[0]['tcruise_location'].length; i++) {
                 for (var j = 0; j < locality.length; j++) {
-                  if (locality[j] != result[0]['twalk_location'][i-1]) {
+                  if (locality[j] != result[0]['tcruise_location'][i-1]) {
                     var locIndex = locality.length;
-                    locality[locIndex] = result[0]['twalk_location'][i];
+                    locality[locIndex] = result[0]['tcruise_location'][i];
                   }
                 }
               }
@@ -556,25 +556,26 @@
                   strtabhead += '<div class="tab-pane" id="'+valID+'Tab">';  
                 }
 
-                for (var j = 0; j < result[0]['twalk_location'].length; j++) {
-                  if (result[0]['twalk_location'][j] == val) {
+                for (var j = 0; j < result[0]['tcruise_location'].length; j++) {
+                  if (result[0]['tcruise_location'][j] == val) {
 
-                    var twalk_id = result[0]['twalk_id'][j];
-                    var twalkData = [];
+                    var tcruise_id = result[0]['tcruise_id'][j];
+                    var tcruiseData = [];
                     
                     $.ajax({
                       async: false,
                       url: 'model/model_transect_data.php',
                       type: 'post',
-                      data: { mode: "walk", value: twalk_id}, // mode tska value ung nasa array ng _POST.
+                      data: { mode: "cruise", value: tcruise_id}, // mode tska value ung nasa array ng _POST.
                       dataType: 'json',
                       success: function(ajaxData) {
-                        twalkData = ajaxData;            
+                        tcruiseData = ajaxData;            
                       },
                       error: function(error) {
                         return 'error';
                       }
                     });
+                    console.log(tcruiseData);
 
                     var tablehead = '';
                     var tableloop = '';
@@ -593,36 +594,36 @@
 
                     tableend = '</tbody></table>';
 
-                    for (var d = 0; d < twalkData[0]['twalkdata_id'].length; d++) {
+                    for (var d = 0; d < tcruiseData[0]['tcdata_id'].length; d++) {
                       tableloop += '<tr>'+
-                        '<td><div class="text-center">'+twalkData[0]['twalkdata_record'][d]+'</div></td>'+
-                        '<td><div class="text-center">'+twalkData[0]['twalkdata_quantity'][d]+'</div></td>'+
-                        '<td><div class="text-center">'+twalkData[0]['twalkdata_time'][d]+'</div></td>'+
-                        '<td>'+twalkData[0]['twalkdata_remarks'][d]+'</td>'+
+                        '<td><div class="text-center">'+tcruiseData[0]['tcdata_record'][d]+'</div></td>'+
+                        '<td><div class="text-center">'+tcruiseData[0]['tcdata_quantity'][d]+'</div></td>'+
+                        '<td><div class="text-center">'+tcruiseData[0]['tcdata_time'][d]+'</div></td>'+
+                        '<td>'+tcruiseData[0]['tcdata_remarks'][d]+'</td>'+
                         '</tr>';
                     }
 
-                    var twalkdataTable = tablehead + tableloop + tableend;
+                    var tcruisedataTable = tablehead + tableloop + tableend;
 
                     box_body = '<div class="row">'+
                     '<div class="col-md-6">'+
                       '<dl>'+
                         '<dt>Date</dt>'+
-                        '<dd>'+result[0]['twalk_date'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_date'][j]+'</dd>'+
                         '<dt>Length of Transect</dt>'+
-                        '<dd>'+result[0]['twalk_lenght'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_lenght'][j]+'</dd>'+
                         '<dt>Comment</dt>'+
-                        '<dd>'+result[0]['twalk_comment'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_comment'][j]+'</dd>'+
                       '</dl>'+
                     '</div>'+
                     '<div class="col-md-6">'+
                       '<dl>'+
                         '<dt>Obeservers</dt>'+
-                        '<dd>'+result[0]['twalk_observer'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_observer'][j]+'</dd>'+
                         '<dt>Starting Time</dt>'+
-                        '<dd>'+result[0]['twalk_time'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_time'][j]+'</dd>'+
                       '</dl>'+
-                    '</div><div class="col-md-12">'+twalkdataTable+'</div></div>';
+                    '</div><div class="col-md-12">'+tcruisedataTable+'</div></div>';
                   } 
                 };
 
@@ -632,7 +633,7 @@
                 var strFinal = strStart + strheadstart + strloophead + strheadend + strbodystart + strloopbody + strbodyend + strEnd; 
                 //var strFinal = strupper + strmid + strlower;
               $('#modal_body').html(strFinal); 
-              $('#modal_title').html('Transect Walk');
+              $('#modal_title').html('Transect Cruise');
               $('.table').DataTable();
               
             }
