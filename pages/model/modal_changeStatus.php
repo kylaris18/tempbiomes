@@ -48,9 +48,9 @@ function updateData(){
 		$pdo = Database::connect();
 		$sql = '';
 		if ($type == 0) {
-			$sql = 'UPDATE tbl_field_diary SET fd_status=3 WHERE fd_id='. $id;
+			$sql = 'UPDATE tbl_photo_doc SET pd_status=3 WHERE pd_id='. $id;
 		} else {
-			$sql = 'UPDATE tbl_field_diary SET fd_status=4 WHERE fd_id='. $id;
+			$sql = 'UPDATE tbl_photo_doc SET pd_status=4 WHERE pd_id='. $id;
 		}
 		// use exec() because no results are returned
 		$result = $pdo->query($sql);
@@ -66,9 +66,9 @@ function updateData(){
 		$pdo = Database::connect();
 		$sql = '';
 		if ($type == 0) {
-			$sql = 'UPDATE tbl_transect SET tsect_status=3 WHERE tsect_id='. $id;
+			$sql = 'UPDATE tbl_field_diary SET fd_status=3 WHERE fd_id='. $id;
 		} else {
-			$sql = 'UPDATE tbl_transect SET tsect_status=4 WHERE tsect_id='. $id;
+			$sql = 'UPDATE tbl_field_diary SET fd_status=4 WHERE fd_id='. $id;
 		}
 		// use exec() because no results are returned
 		$result = $pdo->query($sql);

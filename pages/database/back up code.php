@@ -1265,6 +1265,350 @@
 
 
 
+<section class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">List</h3>
+                  <div class="box-tools">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                      <li><a href="#">«</a></li>
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">»</a></li>
+                    </ul>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <th>ID</th>
+                        <th style="width: 15%;">
+                          <div class="text-center">PASU</div>
+                        </th>
+                        <th><div class="text-center">Protected Area</div></th>
+                        <th><div class="text-center">Year / Quarter</th>
+                        <th><div class="text-center">Matrix for Resource Uses (Method 1)</div></th>
+                        <th style="width: 115px;"><div class="text-center">Action</div></th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>Dean Winchester</td>
+                        <td>Mount Makiling</td>
+                        <td>3rd 2015</td>
+                        <td>
+                          <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal">View</button>
+                        </td>
+                        <td>
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-info">Approve</button>
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Accept</a></li>
+                            <li><a href="#">Reject</a></li>
+                          </ul>
+                        </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Sam Winchester</td>
+                        <td>Mount Makiling</td>
+                        <td>3rd 2015</td>
+                        <td>
+                          <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;">View</button>
+                        </td>
+                        <td>
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-info">Approve</button>
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Accept</a></li>
+                            <li><a href="#">Reject</a></li>
+                          </ul>
+                        </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Misha Collins</td>
+                        <td>Mount Makiling</td>
+                        <td>3rd 2015</td>
+                        <td>
+                          <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;">View</button>
+                        </td>
+                        <td>
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-info">Approve</button>
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Accept</a></li>
+                            <li><a href="#">Reject</a></li>
+                          </ul>
+                        </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Bobby Singer</td>
+                        <td>Mount Makiling</td>
+                        <td>3rd 2015</td>
+                        <td>
+                          <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;">View</button>
+                        </td>
+                        <td>
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-info">Approve</button>
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Accept</a></li>
+                            <li><a href="#">Reject</a></li>
+                          </ul>
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div>
+            </div>
+          </div>
+        </section><!-- /.content -->
+
+
+                        <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1">
+                    <div class="box-group" id="accordion">
+                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                        <div class="panel box box-primary">
+                          <div class="box-header with-border">
+                            <h4 class="box-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">
+                                Locality
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="box box-solid">
+                              <div class="box-body">
+                                <dl>
+                                  <dt>Position</dt>
+                                  <dd>281109/1548455 marked as Starting Point/ Route</dd>
+                                  <dt>Date</dt>
+                                  <dd>June 1, 2015</dd>
+                                  <dt>Full Name of Observer</dt>
+                                  <dd>Royce Ann A. Lascano</dd>
+                                  <dt>Remarks</dt>
+                                  <dd>Sunny weather; dry/dusty trail</dd>
+                                </dl>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div> 
+                              </div>                   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-danger">
+                          <div class="box-header with-border">
+                            <h4 class="box-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false">
+                                Main Topic 2
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="box box-solid">
+                              <div class="box-body">
+                                <dl>
+                                  <dt>Position</dt>
+                                  <dd>281109/1548455 marked as Starting Point/ Route</dd>
+                                  <dt>Date</dt>
+                                  <dd>June 1, 2015</dd>
+                                  <dt>Full Name of Observer</dt>
+                                  <dd>Royce Ann A. Lascano</dd>
+                                  <dt>Remarks</dt>
+                                  <dd>Sunny weather; dry/dusty trail</dd>
+                                </dl>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div> 
+                              </div>                   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-success">
+                          <div class="box-hseader with-border">
+                            <h4 class="box-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">
+                                Main Topic 2
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="box box-solid">
+                              <div class="box-body">
+                                <dl>
+                                  <dt>Position</dt>
+                                  <dd>281109/1548455 marked as Starting Point/ Route</dd>
+                                  <dt>Date</dt>
+                                  <dd>June 1, 2015</dd>
+                                  <dt>Full Name of Observer</dt>
+                                  <dd>Royce Ann A. Lascano</dd>
+                                  <dt>Remarks</dt>
+                                  <dd>Sunny weather; dry/dusty trail</dd>
+                                </dl>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div>
+                                <div class="row margin-bottom">
+                                  <div class="col-md-6">
+                                    <img class="img-responsive" src="../dist/img/photo1.png" alt="Photo">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dl>
+                                      <dt>Photo Name:</dt>
+                                      <dd>PD-02-101</dd>
+                                      <dt>View/Angle Position:</dt>
+                                      <dd>281109/1548455</dd>
+                                      <dt>Description:</dt>
+                                      <dd>Starting point. Right after first bamboo gate from Alas-as view deck.</dd>
+                                    </dl>
+                                  </div>
+                                </div> 
+                              </div>                   
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /.tab-pane -->
+                </div><!-- /.tab-content -->
+
 
 
 
