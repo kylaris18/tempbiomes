@@ -1,23 +1,17 @@
 <?php
-
   #starting session
   session_start();
-  if ((isset($_SESSION['uname']) !='')) 
-  {
-    if($_SESSION['type'] == 1)
-    {
+  if ((isset($_SESSION['uname']) !='')) {
+    if($_SESSION['type'] == 1) {
       header("location: admin_profile.php");
     }
-    elseif($_SESSION['type'] == 3)
-    {
+    elseif($_SESSION['type'] == 3) {
       header("location: pasu_profile.php");
     }
   }
-  else
-  {
+  else {
     header("location: sign_in.php");
   }
-  
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +35,8 @@
     <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" type="text/css" href="../dist/css/sweetalert.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -143,31 +139,32 @@
                             <h3 class="box-title">Please Complete the form Below</h3>
                           </div><!-- /.box-header -->
                           <!-- form start -->
-                          <form role="form" action="../function/manage_pasu.php">
+                          <!-- <form role="form" method="POST" action="../function/manage_pasu.php"> -->
+                          <form role="form">
                             <div class="box-body">
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" name="txtEmail" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="txtEmail" placeholder="Enter email" required>
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername">Username</label>
-                                <input type="text" class="form-control" id="exampleInputUsername" name="txtUname" placeholder="Enter username">
+                                <input type="text" class="form-control" id="exampleInputUsername" name="txtUname" placeholder="Enter username" required>
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" name="txtPcode" placeholder="Enter password">
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="txtPcode" placeholder="Enter password" required>
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputLastname">Lastname</label>
-                                <input type="text" class="form-control" id="exampleInputLastname" name="txtLname" placeholder="Enter lastname">
+                                <input type="text" class="form-control" id="exampleInputLastname" name="txtLname" placeholder="Enter lastname" required>
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputFirstname">Firstname</label>
-                                <input type="text" class="form-control" id="exampleInputFirstname" name="txtFname" placeholder="Enter firstname">
+                                <input type="text" class="form-control" id="exampleInputFirstname" name="txtFname" placeholder="Enter firstname" required>
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputAssigned">Assigned Protected Area</label>
-                                <select name="txtPa">
+                                <select name="txtPa" id="pa">
                                   <?php
                                   require "../config/dbconfig.php";
                                   $sql = "SELECT pa_id, pa_name FROM tbl_protected_area";
@@ -176,14 +173,12 @@
                                   while ($row = mysqli_fetch_array($result)) {
                                     echo "<option value='".$row['pa_id']."'>".$row['pa_name']."</option>";
                                   }
-                                  echo "</select>"
                                   ?>
-
                                 </select>
                               </div>
                             </div><!-- /.box-body -->
                             <div class="box-footer">
-                              <button type="submit" class="btn btn-primary" name="btnSubmit">Submit</button>
+                              <button type="button" onclick="getData()" class="btn btn-primary" name="btnSubmit">Submit</button>
                             </div>
                           </form>
                         <!-- </div> -->
@@ -220,11 +215,107 @@
     <script src="../dist/js/demo.js"></script>
     <!-- Select2 -->
     <script src="../plugins/select2/select2.full.min.js"></script>
+    <!-- Sweetalert js -->
+    <script src="../dist/js/sweetalert.min.js"></script>
+    <script src="../dist/js/sweetalert-dev.js"></script>
+
     <script type="text/javascript">
       $(function () {
         //Initialize Select2 Elements
         $(".select2").select2();
       });
+    </script>
+    <script>
+      function getData(){
+
+        // fields with no chenes.
+        var missingfields = '';
+
+        // validation of every field.
+        if ($('#exampleInputEmail1').val() == '') {
+          missingfields = 'Email';
+        }
+
+        if ($('#exampleInputUsername').val() == '') {
+          if (missingfields == '') {
+            missingfields = 'Username';
+          } else {
+            missingfields = missingfields +', Username';
+          }
+        }
+
+        if ($('#exampleInputPassword1').val() == '') {
+          if (missingfields == '') {
+            missingfields = 'Password';
+          } else {
+            missingfields = missingfields +', Password';
+          }
+        }
+
+        if ($('#exampleInputLastname').val() == '') {
+          if (missingfields == '') {
+            missingfields = 'Last Name';
+          } else {
+            missingfields = missingfields +', Last Name';
+          }
+        }
+
+        if ($('#exampleInputFirstname').val() == '') {
+          if (missingfields == '') {
+            missingfields = 'First Name';
+          } else {
+            missingfields = missingfields +', First Name';
+          }
+        }
+
+        // validation process
+        if (missingfields == '') {
+          swal({
+            title: "Are you sure you want to continue?",
+            text: "Please check content before proceeding.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#7D26CD",
+            confirmButtonText: 'Yes, please.',
+            closeOnConfirm: false
+          },
+          function(){
+            var data={
+              email: $('#exampleInputEmail1').val(),
+              uname: $('#exampleInputUsername').val(),
+              password: $('#exampleInputPassword1').val(),
+              lastname: $('#exampleInputLastname').val(),
+              firstname: $('#exampleInputFirstname').val(),
+              pa: $('#pa').val()
+            };
+            $.ajax({
+              type: "POST",
+              url: 'model/manage_pasu.php',
+              data: data,
+              success: function() {
+                swal({
+                  title: "Success!",
+                  text: "Added Successfully",   
+                  type: "success"
+                }, 
+                function(){ 
+                  setTimeout(function(){ window.location.reload(true); }); 
+                });
+              },
+              error: function(error) {
+                alert(error);
+              }
+            });
+          });
+        }
+        else{
+          swal({
+            title: "Please fill out the following fields.", 
+            text: missingfields, 
+            type: "warning"
+          });
+        } 
+      }
     </script>
   </body>
 </html>

@@ -38,26 +38,26 @@
             <li><a href="head_transect.php"><i class="fa fa-circle-o"></i> Transect</a></li>
           </ul>
       </li>
-      <li class="treeview">
+      <!-- <li class="treeview">
         <a href="head_approved_reports.php">
           <i class="fa fa-check-square-o"></i>
           <span>Recently Approved Reports</span>
         </a>
-      </li>
+      </li> -->
       <li class="treeview">
-        <a href=#">
+        <a href="head_manage_pasu.php">
           <i class="fa fa-users"></i>
           <span>Protected Area Officers</span>
           </a>
       </li>
       <li class="treeview">
-        <a href="#">
+        <a href="head_manage_protected_area.php">
           <i class="fa fa-map"></i> 
           <span>Manage Protected Area</span>
         </a>
       </li>
       <li class="treeview">
-        <a href=#">
+        <a href="head_add_species.php">
           <i class="fa  fa-paw"></i>
           <span>Add Species</span>
         </a>
@@ -68,12 +68,12 @@
           <span>View All Records</span>
           </a>
       </li>
-      <li class="treeview">
+      <!-- <li class="treeview">
         <a href="head_analysis.php">
           <i class="fa fa-area-chart"></i> 
           <span>Analysis of Reports</span>
         </a>
-      </li>
+      </li> -->
       <li class="header">GUIDES</li>
       <li>
         <a href="#">
