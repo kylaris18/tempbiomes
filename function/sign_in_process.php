@@ -21,7 +21,8 @@
 
 		if(mysqli_num_rows($result) == 1)
 		{
-			
+
+			$_SESSION['ID'] = $row['user_id'];
 			$_SESSION['uname'] = $row['user_uname'];
 			$_SESSION['type'] = $row['user_type'];
 
@@ -67,5 +68,4 @@
 			echo "Invalid Username and Password";
 		}
 	}	
-
 ?>
