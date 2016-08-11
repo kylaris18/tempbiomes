@@ -29,7 +29,9 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/AdminLTE.css">
-        <!-- Sweetalert -->
+    <!-- Datatables -->
+    <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+    <!-- Sweetalert -->
     <link rel="stylesheet" href="../dist/css/sweetalert.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
@@ -101,11 +103,11 @@
                           echo '<td>'. $row['fd_id'] . '</td>';
                           echo '<td>'. $row['pasu_fname'] . ' ' . $row['pasu_lname'] . '</td>';
                           echo '<td>'. $row['pa_name'] . '</td>';
-                          echo '<td>'. $row['fd_quarter'] . ' / ' . $row['fd_year'] . '</td>';
+                          echo '<td><div class="text-center">'. $row['fd_quarter'] . ' / ' . $row['fd_year'] . '</div></td>';
                           echo '<td>
                               <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['fd_id'] . '" onclick = getData('. $row['fd_id'] . ');>View</button>
                             </td>
-                            <td>
+                            <td><div class="text-center">
                               <div class="btn-group">
                               <button type="button" onclick="changeStat(0, '.$row['fd_id'].', 1)" class="btn btn-sm btn-info">Approve</button>
                               <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
@@ -117,7 +119,7 @@
                                 <li><a onClick="changeStat(1, '.$row['fd_id'].', 1); return false;" href="#">Reject</a></li>
                               </ul>
                             </div>
-                            </td>';
+                            </div></td>';
                           echo '</tr>';
                         }
                         Database::disconnect();
@@ -335,7 +337,7 @@
           $.ajax({
             url: 'model/modal_changeStatus.php',
             type: 'post',
-            data: { ID: methodID, type: type, mode: mode }, // mode tska value ung nasa array ng _POST.
+            data: { ID: methodID, type: type, mode: mode }, // mode 0 = fgd, 1 = field diary, 2 = photo doc, 3 = transect
             success: function(result) {
               swal("Nice!", "You successfully approved the request!", "success");
               setTimeout(function(){ window.location.reload(true); }, 1500);

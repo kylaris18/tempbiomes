@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/AdminLTE.css">
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="../dist/css/sweetalert.css">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
@@ -98,33 +102,69 @@
                       ON tbl_transect.pa_id=tbl_protected_area.pa_id';
 
                      foreach ($pdo->query($sql) as $row) {
+
+                              $sqlFirst = "SELECT  (
+                                          SELECT COUNT(tsect_id)
+                                          FROM   tbl_transect_walk WHERE tsect_id = {$row['tsect_id']}
+                                          ) AS count1,
+                                          (
+                                          SELECT COUNT(*)
+                                          FROM   tbl_transect_swim WHERE tsect_id = {$row['tsect_id']}
+                                          ) AS count2,
+                                          (
+                                          SELECT COUNT(*)
+                                          FROM   tbl_transect_cruise WHERE tsect_id = {$row['tsect_id']}
+                                          ) AS count3
+                                  FROM    DUAL";
+
+                                  //echo $sqlFirst;
+                               foreach ($pdo->query($sqlFirst) as $row1) {
+                                }
+
+
+                                $stat1 = 'disabled';
+                                 $stat2 = 'disabled';
+                                 $stat3 = 'disabled';
+
+                                 if ($row1['count1'] != 0) {
+                                   $stat1 = '';
+                                 }
+                                 if ($row1['count2'] != 0) {
+                                   $stat2 = '';
+                                 }
+                                 if ($row1['count3'] != 0) {
+                                   $stat3 = '';
+                                 }
+
+
+
                               echo '<tr>';
                               echo '<td>'. $row['tsect_id'] . '</td>';
                               echo '<td>'. $row['pasu_fname'] . ' ' . $row['pasu_lname'] . '</td>';
                               echo '<td>'. $row['pa_name'] . '</td>';
-                              echo '<td>'. $row['tsect_quarter'] . ' / ' . $row['tsect_year'] . '</td>';
+                              echo '<td><div class="text-center">'. $row['tsect_quarter'] . ' / ' . $row['tsect_year'] . '</div></td>';
                               echo '<td>
-                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['tsect_id'] . '" onclick = getData("walk",'. $row['tsect_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat1'. $row['tsect_id'] . '" onclick = getData("walk",'. $row['tsect_id'] . '); '.$stat1.'>View</button>
                               </td>
                               <td>
-                                <button class="btn btn-block center-block bg-maroon btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat2'. $row['tsect_id'] . '" onclick = getData("swim",'. $row['tsect_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-maroon btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat2'. $row['tsect_id'] . '" onclick = getData("swim",'. $row['tsect_id'] . '); '.$stat2.'>View</button>
                               </td>
                               <td>
-                                <button class="btn btn-block center-block bg-orange btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat3'. $row['tsect_id'] . '" onclick = getData("cruise",'. $row['tsect_id'] . ');>View</button>
+                                <button class="btn btn-block center-block bg-orange btn-sm" style="width: 50%;" data-toggle="modal" data-target="#f1Modal" id="btnFormat3'. $row['tsect_id'] . '" onclick = getData("cruise",'. $row['tsect_id'] . '); '.$stat3.'>View</button>
                               </td>
-                              <td>
+                              <td><div class="text-center">
                                 <div class="btn-group">
-                                <button type="button" onclick="changeStat(0, '.$row['tsect_id'].', 0)" class="btn btn-sm btn-info">Approve</button>
+                                <button type="button" onclick="changeStat(0, '.$row['tsect_id'].', 3)" class="btn btn-sm btn-info">Approve</button>
                                 <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a onClick="changeStat(0, '.$row['tsect_id'].',0); return false;" href="#">Accept</a></li>
-                                  <li><a onClick="changeStat(1, '.$row['tsect_id'].',0); return false;" href="#">Reject</a></li>
+                                  <li><a onClick="changeStat(0, '.$row['tsect_id'].',3); return false;" href="#">Accept</a></li>
+                                  <li><a onClick="changeStat(1, '.$row['tsect_id'].',3); return false;" href="#">Reject</a></li>
                                 </ul>
                               </div>
-                              </td>';
+                              </div></td>';
                               echo '</tr>';
                      }
                      Database::disconnect();
@@ -191,6 +231,8 @@
     <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="../plugins/fastclick/fastclick.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="../dist/js/sweetalert.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
@@ -503,13 +545,13 @@
 
               var locality = [];
 
-              locality[0] = result[0]['twalk_location'][0];
+              locality[0] = result[0]['tcruise_location'][0];
 
-              for (var i = 1; i < result[0]['twalk_location'].length; i++) {
+              for (var i = 1; i < result[0]['tcruise_location'].length; i++) {
                 for (var j = 0; j < locality.length; j++) {
-                  if (locality[j] != result[0]['twalk_location'][i-1]) {
+                  if (locality[j] != result[0]['tcruise_location'][i-1]) {
                     var locIndex = locality.length;
-                    locality[locIndex] = result[0]['twalk_location'][i];
+                    locality[locIndex] = result[0]['tcruise_location'][i];
                   }
                 }
               }
@@ -556,25 +598,26 @@
                   strtabhead += '<div class="tab-pane" id="'+valID+'Tab">';  
                 }
 
-                for (var j = 0; j < result[0]['twalk_location'].length; j++) {
-                  if (result[0]['twalk_location'][j] == val) {
+                for (var j = 0; j < result[0]['tcruise_location'].length; j++) {
+                  if (result[0]['tcruise_location'][j] == val) {
 
-                    var twalk_id = result[0]['twalk_id'][j];
-                    var twalkData = [];
+                    var tcruise_id = result[0]['tcruise_id'][j];
+                    var tcruiseData = [];
                     
                     $.ajax({
                       async: false,
                       url: 'model/model_transect_data.php',
                       type: 'post',
-                      data: { mode: "walk", value: twalk_id}, // mode tska value ung nasa array ng _POST.
+                      data: { mode: "cruise", value: tcruise_id}, // mode tska value ung nasa array ng _POST.
                       dataType: 'json',
                       success: function(ajaxData) {
-                        twalkData = ajaxData;            
+                        tcruiseData = ajaxData;            
                       },
                       error: function(error) {
                         return 'error';
                       }
                     });
+                    console.log(tcruiseData);
 
                     var tablehead = '';
                     var tableloop = '';
@@ -593,36 +636,36 @@
 
                     tableend = '</tbody></table>';
 
-                    for (var d = 0; d < twalkData[0]['twalkdata_id'].length; d++) {
+                    for (var d = 0; d < tcruiseData[0]['tcdata_id'].length; d++) {
                       tableloop += '<tr>'+
-                        '<td><div class="text-center">'+twalkData[0]['twalkdata_record'][d]+'</div></td>'+
-                        '<td><div class="text-center">'+twalkData[0]['twalkdata_quantity'][d]+'</div></td>'+
-                        '<td><div class="text-center">'+twalkData[0]['twalkdata_time'][d]+'</div></td>'+
-                        '<td>'+twalkData[0]['twalkdata_remarks'][d]+'</td>'+
+                        '<td><div class="text-center">'+tcruiseData[0]['tcdata_record'][d]+'</div></td>'+
+                        '<td><div class="text-center">'+tcruiseData[0]['tcdata_quantity'][d]+'</div></td>'+
+                        '<td><div class="text-center">'+tcruiseData[0]['tcdata_time'][d]+'</div></td>'+
+                        '<td>'+tcruiseData[0]['tcdata_remarks'][d]+'</td>'+
                         '</tr>';
                     }
 
-                    var twalkdataTable = tablehead + tableloop + tableend;
+                    var tcruisedataTable = tablehead + tableloop + tableend;
 
                     box_body = '<div class="row">'+
                     '<div class="col-md-6">'+
                       '<dl>'+
                         '<dt>Date</dt>'+
-                        '<dd>'+result[0]['twalk_date'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_date'][j]+'</dd>'+
                         '<dt>Length of Transect</dt>'+
-                        '<dd>'+result[0]['twalk_lenght'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_lenght'][j]+'</dd>'+
                         '<dt>Comment</dt>'+
-                        '<dd>'+result[0]['twalk_comment'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_comment'][j]+'</dd>'+
                       '</dl>'+
                     '</div>'+
                     '<div class="col-md-6">'+
                       '<dl>'+
                         '<dt>Obeservers</dt>'+
-                        '<dd>'+result[0]['twalk_observer'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_observer'][j]+'</dd>'+
                         '<dt>Starting Time</dt>'+
-                        '<dd>'+result[0]['twalk_time'][j]+'</dd>'+
+                        '<dd>'+result[0]['tcruise_time'][j]+'</dd>'+
                       '</dl>'+
-                    '</div><div class="col-md-12">'+twalkdataTable+'</div></div>';
+                    '</div><div class="col-md-12">'+tcruisedataTable+'</div></div>';
                   } 
                 };
 
@@ -632,7 +675,7 @@
                 var strFinal = strStart + strheadstart + strloophead + strheadend + strbodystart + strloopbody + strbodyend + strEnd; 
                 //var strFinal = strupper + strmid + strlower;
               $('#modal_body').html(strFinal); 
-              $('#modal_title').html('Transect Walk');
+              $('#modal_title').html('Transect Cruise');
               $('.table').DataTable();
               
             }
@@ -643,6 +686,47 @@
             $('#modal_body').html("error");
             $('#modal_title').html("There is an error. Please try");
           }
+        });
+      }
+
+      function changeStat(type, methodID, mode){
+        var titleText = '';
+        var confirmColor = '';
+
+        //0 is accept, 1 is reject
+        if (type == 0) {
+          titleText = 'Accept Report?';
+          confirmColor = '#00A65A';          
+        } else{
+          titleText = 'Reject Report?';
+          confirmColor = '#d9534f';
+        };
+
+        console.log(titleText);
+
+
+        swal({
+          title: titleText,
+          text: "Please check content before proceeding. You will not be able to undo this action later.",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: confirmColor,
+          confirmButtonText: 'Yes, please.',
+          closeOnConfirm: false
+        },
+        function(){
+          $.ajax({
+            url: 'model/modal_changeStatus.php',
+            type: 'post',
+            data: { ID: methodID, type: type, mode: mode }, // mode 0 = fgd, 1 = field diary, 2 = photo doc, 3 = transect
+            success: function(result) {
+              swal("Nice!", "You successfully approved the request!", "success");
+              setTimeout(function(){ window.location.reload(true); }, 1500);
+            },
+            error: function(error) {
+              alert(error);
+            }
+          });
         });
       }
     </script>

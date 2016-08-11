@@ -1,5 +1,4 @@
 <?php
-
   #starting session
   session_start();
   if ((isset($_SESSION['uname']) !='')) 
@@ -17,7 +16,6 @@
   {
     header("location: sign_in.php");
   }
-  
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +23,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Profile</title>
+    <title>HeadBIOMES| Profile</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -41,6 +39,7 @@
     <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
      <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="../plugins/iCheck/all.css">
+    <link rel="stylesheet" type="text/css" href="../dist/css/sweetalert.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -73,13 +72,9 @@
               <!-- Profile Image -->
               <div class="box box-success">
                 <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" src="../function/profile-picture.php" alt="User profile picture">
+                  <img id = "defaultpic" class="profile-user-img img-responsive img-circle" src="../function/profile-picture.php" alt="User profile picture">
                   <h3 class="profile-username text-center">
-                    <?php 
-
-                      echo "". $_SESSION['h_fname'] . " " . $_SESSION['h_lname'] ."";
-
-                    ?>
+                    <?php echo "". $_SESSION['h_fname'] . " " . $_SESSION['h_lname'] .""; ?>
                   </h3>
                   <p class="text-muted text-center">Head Administrator</p>
                   <button class="btn btn-success btn-block" data-toggle="modal" data-target="#EditModal"><b>Edit Profile</b></button>
@@ -97,11 +92,10 @@
                     require "../config/dbconfig.php";
 
                     $ses_name = $_SESSION['uname'];
-                    $ses_sql = mysqli_query($db,"SELECT head_email, head_gender, head_bday, head_address, head_contactno FROM tbl_head WHERE head_uname='$ses_name' ");
+                    $ses_sql = mysqli_query($db,"SELECT head_email, head_gender, head_address, head_contactno FROM tbl_head WHERE head_uname='$ses_name' ");
                     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
                     $email = $row['head_email'];
                     $gender = $row['head_gender'];
-                    $bday = $row['head_bday'];
                     $address = $row['head_address'];
                     $contact = $row['head_contactno'];
 
@@ -130,178 +124,83 @@
                     <strong><i class="fa fa-male margin-r-5"></i> Gender</strong>
                     <p class="text-muted">
                       '.$gender.'
-                    </p>
-
-                    <hr>
-
-                    <strong><i class="fa fa-gift margin-r-5"></i> Birthday</strong>
-                    <p class="text-muted">
-                      '.$bday.'
                     </p>';
                   ?>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
             <div class="col-md-9">
-              <!-- The time line -->
-              <ul class="timeline">
-                <!-- timeline time label -->
-                <li class="time-label">
-                  <span class="bg-red">
-                    10 Feb. 2014
-                  </span>
-                </li>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
-                <li>
-                  <i class="fa fa-envelope bg-blue"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                    <div class="timeline-body">
-                      Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                      weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                      quora plaxo ideeli hulu weebly balihoo...
-                    </div>
-                    <div class="timeline-footer">
-                      <a class="btn btn-primary btn-xs">Read more</a>
-                      <a class="btn btn-danger btn-xs">Delete</a>
-                    </div>
-                  </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <li>
-                  <i class="fa fa-user bg-aqua"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                    <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
-                  </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <li>
-                  <i class="fa fa-comments bg-yellow"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-                    <div class="timeline-body">
-                      Take me to your leader!
-                      Switzerland is small and neutral!
-                      We are more like Germany, ambitious and misunderstood!
-                    </div>
-                    <div class="timeline-footer">
-                      <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                    </div>
-                  </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline time label -->
-                <li class="time-label">
-                  <span class="bg-green">
-                    3 Jan. 2014
-                  </span>
-                </li>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
-                <li>
-                  <i class="fa fa-camera bg-purple"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-                    <div class="timeline-body">
-                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                    </div>
-                  </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <li>
-                  <i class="fa fa-video-camera bg-maroon"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 5 days ago</span>
-                    <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
-                    <div class="timeline-body">
-                      <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" frameborder="0" allowfullscreen></iframe>
-                      </div>
-                    </div>
-                    <div class="timeline-footer">
-                      <a href="#" class="btn btn-xs bg-maroon">See comments</a>
-                    </div>
-                  </div>
-                </li>
-                <!-- END timeline item -->
-                <li>
-                  <i class="fa fa-clock-o bg-gray"></i>
-                </li>
-              </ul>
             </div>
           </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
+      <!-- Modal -->
       <div class="modal fade" id="EditModal" role="dialog">
         <div class="modal-dialog modal-md">    
           <!-- Modal content-->
+          <?php
+            $profdataquery = 'SELECT * from tbl_head WHERE head_id = '. $_SESSION['ID'];
+            $profSql = mysqli_query($db, $profdataquery);
+            $row1 = mysqli_fetch_array($profSql,MYSQLI_ASSOC);
+          ?>
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Edit Profile</h4>
             </div>
             <div class="modal-body" id="format1_modal_body">
-              <form role="form">
+              <form role="form" id="updateProfile">
                 <div class="box-body">
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Firstname">
+                        <input type="text" id="firstName" class="form-control" value="<?php echo $row1['head_fname']?>" placeholder="Firstname">
                       </div><br>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Lastname">
+                        <input type="text" id="lastName" class="form-control" value="<?php echo $row1['head_lname']?>" placeholder="Lastname">
                       </div><br>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" id="email" class="form-control" value="<?php echo $row1['head_email']?>" placeholder="Email">
                       </div><br>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
-                        <input type="text" class="form-control" placeholder="Contact Number">
+                        <input type="text" id="contactno" class="form-control" value="<?php echo $row1['head_contactno']?>" placeholder="Contact Number">
                       </div><br>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                        <input type="text" class="form-control" placeholder="Complete Address">
+                        <input type="text" id="address" class="form-control" value="<?php echo $row1['head_address']?>" placeholder="Complete Address">
                       </div><br>
-                      <div class="input-group">
+<!--                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="date" class="form-control">
-                      </div><br>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                        <input type="password" class="form-control" id = "exampleInputPassword" placeholder="Password">
-                      </div><br>
+                        <input type="date" id="birthday" class="form-control">
+                      </div><br> -->
                       <div class="input-group">
                         <label>Gender</label><br>
-                        <input type="radio" class="flat-red" name="gender" value="male" checked> Male
-                        <input type="radio" class="flat-red" name="gender" value="female"> Female
-                      </div><br>
-                      <div class="input-group">
-                        <label for="exampleInputFile">Change Profile Picture</label>
-                        <input type="file" id="exampleInputFile">
+                        <?php
+                          if ($row1['head_gender'] == "Female") {
+                            echo '<input id="gender_Male" type="radio" class="flat-red" name="gender" value="Male"> Male';
+                            echo '<input id="gender_Female" type="radio" class="flat-red" name="gender" value="Female" checked> Female';
+                          } else {
+                            echo '<input id="gender_Male" type="radio" class="flat-red" name="gender" value="Male" checked> Male';
+                            echo '<input id="gender_Female" type="radio" class="flat-red" name="gender" value="Female"> Female';
+                          }
+                        ?>                       
                       </div>
+                      <!-- <div class="input-group">
+                        <label for="exampleInputFile">Change Profile Picture</label>
+                        <input type="file" id="picture">
+                      </div> -->
                     </div>
                 </div><!-- /.box-body -->
               </form>
             </div>
             
             <div class="modal-footer">
-              <button type="submit" class="btn btn-success">Save Changes</button>
-              <button type="button" class="btn btn-danger">Cancel</button>
+              <button type="button" onclick="getData('<?php echo $_SESSION['ID']?>')" class="btn btn-success">Save Changes</button>
+              <button type="button" data-dismiss="modal" data-target="#EditModal" class="btn btn-danger">Cancel</button>
             </div>
           </div>        
         </div>
@@ -328,6 +227,9 @@
     <script src="../dist/js/demo.js"></script>
     <!-- iCheck 1.0.1 -->
     <script src="../plugins/iCheck/icheck.min.js"></script>
+    <!-- Sweetalert js -->
+    <script src="../dist/js/sweetalert.min.js"></script>
+    <script src="../dist/js/sweetalert-dev.js"></script>
     <script>
       $(function(){
         //Flat red color scheme for iCheck
@@ -336,6 +238,60 @@
           radioClass: 'iradio_flat-green'
         });
       });
+    </script>
+    <script>
+      function getData(profileID){
+
+        console.log($('#firstName').val());
+        swal({
+          title: "Are you sure you want to continue?",
+          text: "Please check content before proceeding.",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#7D26CD",
+          confirmButtonText: 'Yes, please.',
+          closeOnConfirm: false
+        },
+        function(){
+          var gender;
+          if(document.getElementById('gender_Male').checked) {
+            gender = 'Male';
+          }else if(document.getElementById('gender_Female').checked) {
+            gender = 'Female';
+          }
+          var data={
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            email: $('#email').val(),
+            contactno: $('#contactno').val(),
+            address: $('#address').val(),
+            gender: gender,
+            birthday: $('#birthday').val(),
+            picture: $('#picture').val(),
+            id: profileID
+          }
+          console.log(data);
+          $.ajax({
+            type: "POST",
+            url: 'model/model_profData.php',
+            data: data,
+            success: function() {
+              swal({
+                title: "Success!",
+                text: "Please log out then log in again to view the changes.",   
+                type: "success"
+              }, 
+              function(){ 
+                setTimeout(function(){ window.location.reload(true); }); 
+              });
+              
+            },
+            error: function(error) {
+              alert(error);
+            }
+          });
+        });
+      }
     </script>
   </body>
 </html>

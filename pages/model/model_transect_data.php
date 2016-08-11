@@ -57,6 +57,31 @@ elseif ($mode == "swim") {
 	}
 	$data[] = getData($value);
 }
+elseif ($mode == "cruise") {
+	$value = $_POST['value'];
+	//$value = 1;
+	function getData($value){
+		$pdo = Database::connect();
+		$sql = 'SELECT *
+				FROM tbl_transect_cruise_data
+				WHERE tcruise_id = '.$value;
+		$STH = $pdo->query($sql);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+
+		while($row = $STH->fetch()) {
+		    $result['tcdata_id'][] = $row['tcdata_id'];
+		    $result['tcruise_id'][] = $row['tcruise_id'] ;
+		    $result['tcdata_record'][] = $row['tcdata_record'] ;
+		    $result['tcdata_quantity'][] = $row['tcdata_quantity'] ;
+		    $result['tcdata_time'][] = $row['tcdata_time'] ;
+		    $result['tcdata_remarks'][] = $row['tcdata_remarks'] ;
+		}
+		//$result = $row ->fetchAll();
+		Database::disconnect();
+		return $result;
+	}
+	$data[] = getData($value);
+}
 
 echo json_encode($data);
 

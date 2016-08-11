@@ -70,20 +70,20 @@ elseif ($mode == "cruise")
 	function getData($value){
 		$pdo = Database::connect();
 		$sql = 'SELECT *
-				FROM tbl_transect_walk
+				FROM tbl_transect_cruise
 				WHERE tsect_id = '.$value;
 		$STH = $pdo->query($sql);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 
 		while($row = $STH->fetch()) {
-		    $result['twalk_id'][] = $row['twalk_id'];
+		    $result['tcruise_id'][] = $row['tcruise_id'];
 		    $result['tsect_id'][] = $row['tsect_id'] ;
-		    $result['twalk_location'][] = $row['twalk_location'] ;
-		    $result['twalk_observer'][] = $row['twalk_observer'] ;
-		    $result['twalk_lenght'][] = $row['twalk_lenght'] ;
-		    $result['twalk_date'][] = $row['twalk_date'] ;
-		    $result['twalk_time'][] = $row['twalk_time'] ;
-		    $result['twalk_comment'][] = $row['twalk_comment'] ;
+		    $result['tcruise_location'][] = $row['tcruise_location'] ;
+		    $result['tcruise_observer'][] = $row['tcruise_observer'] ;
+		    $result['tcruise_lenght'][] = $row['tcruise_lenght'] ;
+		    $result['tcruise_date'][] = $row['tcruise_date'] ;
+		    $result['tcruise_time'][] = $row['tcruise_time'] ;
+		    $result['tcruise_comment'][] = $row['tcruise_comment'] ;
 		}
 		//$result = $row ->fetchAll();
 		Database::disconnect();

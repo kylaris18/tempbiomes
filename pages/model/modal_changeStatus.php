@@ -24,7 +24,8 @@ function updateData(){
 		} catch (Exception $e) {
 			return 'failed';
 		}
-	} elseif ($method == 1) {
+	}
+	elseif ($method == 1) {
 		try {
 		$pdo = Database::connect();
 		$sql = '';
@@ -42,6 +43,42 @@ function updateData(){
 			return 'failed';
 		}
 	} 
+	elseif ($method == 2) {
+		try {
+		$pdo = Database::connect();
+		$sql = '';
+		if ($type == 0) {
+			$sql = 'UPDATE tbl_photo_doc SET pd_status=3 WHERE pd_id='. $id;
+		} else {
+			$sql = 'UPDATE tbl_photo_doc SET pd_status=4 WHERE pd_id='. $id;
+		}
+		// use exec() because no results are returned
+		$result = $pdo->query($sql);
+		Database::disconnect();
+		return 'success';
+
+		} catch (Exception $e) {
+			return 'failed';
+		}
+	}
+	elseif ($method == 3) {
+		try {
+		$pdo = Database::connect();
+		$sql = '';
+		if ($type == 0) {
+			$sql = 'UPDATE tbl_field_diary SET fd_status=3 WHERE fd_id='. $id;
+		} else {
+			$sql = 'UPDATE tbl_field_diary SET fd_status=4 WHERE fd_id='. $id;
+		}
+		// use exec() because no results are returned
+		$result = $pdo->query($sql);
+		Database::disconnect();
+		return 'success';
+
+		} catch (Exception $e) {
+			return 'failed';
+		}
+	}
 }
 $success = updateData();
 echo $success;
