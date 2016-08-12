@@ -13,7 +13,9 @@
             echo "". $_SESSION['p_fname'] . " " . $_SESSION['p_lname'] ."";
 
           ?>
-        <a href="#">09054586521</a>
+        </p>
+
+        <small>09054586521</small>
       </div>
     </div>
     <ul class="sidebar-menu">
@@ -42,24 +44,24 @@
         </a>
       </li>
       <li class="treeview">
-        <a href="FieldDiary.php">
+        <a href="PASu_FieldDiary.php">
           <i class="fa fa-book"></i>
           <span>Field Diary</span>
         </a>
       </li>
       <li class="treeview">
-        <a href="FocusGroupDiscussion.php">
+        <a href="PASu_FocusGroupDiscussion.php">
           <i class="fa fa-users"></i> 
           <span>Focus Group Discussion</span>
         </a>
       </li>
       <li class="treeview">
-        <a href="TransectWalk.php">
+        <a href="PASu_Transect.php">
           <i class="fa fa-map-signs"></i> 
           <span>Transect</span>
         </a>
       <li> 
-        <a href="PhotoDocumentation.php">
+        <a href="PASu_PhotoDocumentation.php">
           <i class="fa fa-photo"></i> 
           <span>Photo Documentation</span>
         </a>
