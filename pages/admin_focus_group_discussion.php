@@ -82,8 +82,8 @@
                         <th style="width: 15%;">
                           <div class="text-center">PASu</div>
                         </th>
-                        <th><div class="text-center">Protected Area</th>
-                        <th><div class="text-center">Year / Quarter</th>
+                        <th><div class="text-center">Protected Area</div></th>
+                        <th><div class="text-center">Year / Quarter</div></th>
                         <th><div class="text-center">Main Issues Discussed (Method 1)</div></th>
                         <th><div class="text-center">Matrix for Resource Uses (Method 2)</div></th>
                         <th><div class="text-center">Matrix for Species Observed (Method 3)</div></th>

@@ -32,7 +32,7 @@
           <li><a href="admin_transect.php"><i class="fa fa-paw"></i> Transect</a></li>
       <li class="header">REPORTS</li>
       <li class="treeview">
-        <a href="admin_approved_reports.php">
+        <a href="admin_approve_reports.php">
           <i class="fa fa-check-square-o"></i>
           <span>View All Reports</span>
         </a>
