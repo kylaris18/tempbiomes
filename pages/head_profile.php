@@ -173,26 +173,18 @@
                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                         <input type="text" id="address" class="form-control" value="<?php echo $row1['head_address']?>" placeholder="Complete Address">
                       </div><br>
-<!--                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="date" id="birthday" class="form-control">
-                      </div><br> -->
                       <div class="input-group">
                         <label>Gender</label><br>
                         <?php
                           if ($row1['head_gender'] == "Female") {
                             echo '<input id="gender_Male" type="radio" class="flat-red" name="gender" value="Male"> Male';
-                            echo '<input id="gender_Female" type="radio" class="flat-red" name="gender" value="Female" checked> Female';
+                            echo '<input id="gender_Female" type="radio" class="fsslat-red" name="gender" value="Female" checked> Female';
                           } else {
                             echo '<input id="gender_Male" type="radio" class="flat-red" name="gender" value="Male" checked> Male';
                             echo '<input id="gender_Female" type="radio" class="flat-red" name="gender" value="Female"> Female';
                           }
                         ?>                       
                       </div>
-                      <!-- <div class="input-group">
-                        <label for="exampleInputFile">Change Profile Picture</label>
-                        <input type="file" id="picture">
-                      </div> -->
                     </div>
                 </div><!-- /.box-body -->
               </form>
@@ -242,7 +234,7 @@
     <script>
       function getData(profileID){
 
-        console.log($('#firstName').val());
+        // console.log($('#firstName').val());
         swal({
           title: "Are you sure you want to continue?",
           text: "Please check content before proceeding.",
@@ -270,7 +262,7 @@
             picture: $('#picture').val(),
             id: profileID
           }
-          console.log(data);
+          // console.log(data);
           $.ajax({
             type: "POST",
             url: 'model/model_profData.php',

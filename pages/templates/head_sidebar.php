@@ -8,11 +8,7 @@
       </div>
       <div class="pull-left info">
         <p>
-          <?php 
-
-            echo "". $_SESSION['h_fname'] . " " . $_SESSION['h_lname'] ."";
-
-          ?>
+          <?php echo "". $_SESSION['h_fname'] . " " . $_SESSION['h_lname'] .""; ?>
         </p>
         <a href="#">09054586521</a>
       </div>
@@ -38,12 +34,6 @@
             <li><a href="head_transect.php"><i class="fa fa-circle-o"></i> Transect</a></li>
           </ul>
       </li>
-      <!-- <li class="treeview">
-        <a href="head_approved_reports.php">
-          <i class="fa fa-check-square-o"></i>
-          <span>Recently Approved Reports</span>
-        </a>
-      </li> -->
       <li class="treeview">
         <a href="head_manage_pasu.php">
           <i class="fa fa-users"></i>
@@ -62,18 +52,6 @@
           <span>Add Species</span>
         </a>
       </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-book"></i> 
-          <span>View All Records</span>
-          </a>
-      </li>
-      <!-- <li class="treeview">
-        <a href="head_analysis.php">
-          <i class="fa fa-area-chart"></i> 
-          <span>Analysis of Reports</span>
-        </a>
-      </li> -->
       <li class="header">GUIDES</li>
       <li>
         <a href="#">

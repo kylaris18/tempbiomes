@@ -22,7 +22,7 @@
 		$area = mysqli_real_escape_string($db, $area);
 
 		$query = mysqli_query($db, "INSERT INTO tbl_protected_area (pa_name, pa_location, pa_legislation, pa_description, pa_date_established, pa_area)VALUES ('$protected_area','$location', '$legislation', '$desc', '$date', '$area')");
-			if($query){
+			if($query) {
 				echo "Added to the database";
 			}
 			else
