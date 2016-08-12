@@ -97,15 +97,17 @@
                             include 'database/database.php';
                             $pdo = Database::connect();
 
+                            $species_status = '1';
+
                             #Retrieve data from the database
-                            $sql = "SELECT pa_id, pa_name, pa_location, pa_legislation FROM tbl_protected_area";
+                            $sql = "SELECT species_id, species_type, species_name, species_Sc_name FROM tbl_species WHERE species_status = '".$species_status."'";
                             
                             foreach ($pdo->query($sql) as $row) {
                               echo '<tr>';
-                              echo '<td><div class="text-center">'. $row['pa_id'] . '</div></td>';
-                              echo '<td><div class="text-center">'. $row['pa_name'] . '</div></td>';
-                              echo '<td><div class="text-center">'. $row['pa_location'] . '</div></td>';
-                              echo '<td><div class="text-center">'. $row['pa_legislation'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row['species_id'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row['species_name'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row['species_Sc_name'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row['species_type'] . '</div></td>';
                               echo '<td><div class="text-center">
                                 <button class="btn btn-block center-block bg-purple btn-sm" style="width: 80%;" data-toggle="modal" data-target="#f1Modal">view</button></div></td>
 
@@ -134,25 +136,27 @@
                             <th><div class="text-center">Scientific Name</div></th>
                             <th><div class="text-center">Type</div></th>
                             <th><div class="text-center">Action</div></th>
+                            <th><div class="text-center">Action</div></th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php
-                            #connecting to the database by calling the dbconfig file
-                           // include 'database/database.php';
-                            $pdo = Database::connect();
+                            $species_status2 = '2';
 
                             #Retrieve data from the database
-                            $sql2 = "SELECT pa_id, pa_name, pa_location, pa_legislation FROM tbl_protected_area";
+                            $sql2 = "SELECT species_id, species_type, species_name, species_Sc_name FROM tbl_species WHERE species_status = '".$species_status2."'";
                             
                             foreach ($pdo->query($sql2) as $row2) {
                               echo '<tr>';
-                              echo '<td><div class="text-center">'. $row2['pa_id'] . '</div></td>';
-                              echo '<td><div class="text-center">'. $row2['pa_name'] . '</div></td>';
-                              echo '<td><div class="text-center">'. $row2['pa_location'] . '</div></td>';
-                              echo '<td><div class="text-center">'. $row2['pa_legislation'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row2['species_id'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row2['species_name'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row2['species_Sc_name'] . '</div></td>';
+                              echo '<td><div class="text-center">'. $row2['species_type'] . '</div></td>';
                               echo '<td><div class="text-center">
-                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 80%;" data-toggle="modal" data-target="#f1Modal">Approve</button></div></td>';
+                                <button class="btn btn-block center-block bg-purple btn-sm" style="width: 80%;" data-toggle="modal" data-target="#f1Modal">view</button></div></td>
+
+                                <td><div class="text-center">
+                                <button class="btn btn-block center-block btn-danger btn-sm" style="width: 80%;" data-toggle="modal" data-target="#f1Modal">Delete</button></div></td>';
                               echo '</tr>';
                             }
                           ?>
@@ -163,37 +167,39 @@
                   </div><!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">
                     <div class="box-header with-border">
-                      <h3 class="box-title"> New Protected Area</h3>
+                      <h3 class="box-title"> Add Species</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="../function/manage_protected_area.php"><br>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                        <input type="text" class="form-control" name="txtPA" placeholder="Enter the name of the protected area" required>
-                      </div><br>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                        <input type="text" class="form-control" name="txtLocation" placeholder="Enter the location" required>
-                      </div><br>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa  fa-circle-o"></i></span>
-                        <input type="number" class="form-control" name="txtArea" placeholder="Area size" required>
-                      </div><br>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="date" name = "txtDate" class="form-control" required>
-                      </div><br>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-legal"></i></span>
-                        <input type="text" class="form-control" name="txtLegislation" placeholder="Legislation" required>
-                      </div><br>
-                      <div>
-                        <textarea class="textarea" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px;" name="txtContent" placeholder="Write a description here..."></textarea>
-                      </div><br>
-                      <div class="box-footer clearfix">
-                        <button class="pull-right btn btn-default" name = "btnSubmit" id="sendEmail"><i class="fa  fa-plus-circle"></i> Save</button>
-                      </div>
-                    </form>
+                    <div class="row">
+                      <div class="col-md-8 col-md-offset-2">
+                        <form role="form" method="POST" action="../function/add_species.php" enctype="multipart/form-data"><br>
+                          <div class="form-group">                          
+                            <label>Species Type</label>
+                            <select name="drp_type">
+                              <option value="Flora">Flora</option>
+                              <option value="Fauna">Fauna</option>
+                            </select>
+                          </div>
+                          <div class="input-group">
+                            <input type="file" name="imgProfile" accept="image/*">
+                          </div><br>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-paw"></i></span>
+                            <input type="text" class="form-control" name="txtSpeciesName" placeholder="Enter the Species Name" required>
+                          </div><br>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa  fa-flask"></i></span>
+                            <input type="text" class="form-control" name="txtScientificName" placeholder="Scientific Name" required>
+                          </div><br>
+                          <div>
+                            <textarea class="textarea" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px;" name="txtContent" placeholder="Write a description here..."></textarea>
+                          </div><br>
+                          <div class="box-footer clearfix">
+                            <button class="pull-right btn btn-default" name = "btnSubmit" id="sendEmail"><i class="fa  fa-plus-circle"></i> Save</button>
+                          </div>  
+                        </form>
+                      </div>           
+                    </div>
                   </div><!-- /.tab-pane -->
                 </div><!-- /.tab-content -->
               </div>
@@ -242,7 +248,14 @@
       <script src="../plugins/select2/select2.full.min.js"></script>
       <script>
         $(document).ready(function(){
-          $('.table').DataTable();
+          $('#table_id').DataTable();
+          $('#table_id2').DataTable();
+          // $(function() {
+          //   $("li").on("click",function() {
+          //     console.log('damn booty!');
+          //     $('.table').DataTable();
+          //   });
+          // });
         });
       </script>
       <script type="text/javascript">
