@@ -17,6 +17,25 @@
   {
     header("location: sign_in.php");
   }
+  $qfinal;
+  $quarter = $_SESSION['quarter'];
+  if (is_null($quarter)) {
+    header("location: pasu_redirect.php");
+  }
+  else{
+    if ($quarter == 1) {
+      $qfinal = '1st';
+    }
+    elseif ($quarter == 2) {
+      $qfinal = '2nd';
+    }
+    elseif ($quarter == 3) {
+      $qfinal = '3rd';
+    }
+    elseif ($quarter == 4) {
+      $qfinal = '4th';
+    } 
+  }
   
 ?>
 <!DOCTYPE html>

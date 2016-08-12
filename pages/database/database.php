@@ -4,7 +4,7 @@ class Database
     private static $dbName = 'db_biodiversity' ;
     private static $dbHost = 'localhost' ;
     private static $dbUsername = 'root';
-    private static $dbUserPassword = 'cjay';
+    private static $dbUserPassword = 'pup';
      
     private static $cont  = null;
      

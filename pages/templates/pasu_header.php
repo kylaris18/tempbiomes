@@ -4,7 +4,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>B</b>MS</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>BIOMES</span>
+          <span class="logo-lg"><b>Pasu</b>BIOMES</span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top" role="navigation">
@@ -18,57 +18,17 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <!-- Notifications: style can be found in dropdown.less -->
-        <li class="dropdown notifications-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <!-- Number of notifications -->
-                  <span class="label label-warning">5</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 5 notifications</li>
-                  <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="#">View all</a></li>
-                </ul>
-        </li>
         <!-- Tasks: style can be found in dropdown.less -->
-        <li class="dropdown tasks-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-warning"></i>
-            <span class="label label-danger">9</span>
+        <li>
+          <a>
+            <!-- <i class="fa fa-warning"></i>
+            <span class="label label-danger">9</span> -->
+            <span class="logo-mini">
+              <?php
+                echo "". $qfinal . " Quarter of " . $_SESSION['year'] ."";
+              ?>
+            </span>
           </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have 9 tasks</li>
-            <li>
-              <!-- inner menu: contains the actual data -->
-              <ul class="menu">
-                <li><!-- Task item -->
-                  <a href="#">
-                    <h3>
-                      Design some buttons
-                      <small class="pull-right">20%</small>
-                    </h3>
-                    <div class="progress xs">
-                      <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">20% Complete</span>
-                      </div>
-                    </div>
-                  </a>
-                </li><!-- end task item -->
-              </ul>
-            </li>
-            <li class="footer">
-              <a href="#">View all tasks</a>
-            </li>
-          </ul>
         </li>
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
