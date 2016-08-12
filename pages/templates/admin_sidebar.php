@@ -25,35 +25,16 @@
         <span>Profile</span>
         </a>
       </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-check"></i> 
-          <span>Records for Approval</span> 
-          <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="admin_focus_group_discussion.php"><i class="fa fa-circle-o"></i> Focus Group Discussion</a></li>
-          <li><a href="admin_field_diary.php"><i class="fa fa-circle-o"></i> Field Diary</a></li>
-          <li><a href="admin_photo_documentation.php"><i class="fa fa-circle-o"></i> Photo Documentation</a></li>
-          <li><a href="admin_transect.php"><i class="fa fa-circle-o"></i> Transect</a></li>
-        </ul>
-      </li>
+      <li class="header">BMS METHODS</li>
+      <li><a href="admin_focus_group_discussion.php"><i class="fa fa-area-chart"></i> Focus Group Discussion</a></li>
+          <li><a href="admin_field_diary.php"><i class="fa fa-calendar-check-o"></i> Field Diary</a></li>
+          <li><a href="admin_photo_documentation.php"><i class="fa fa-picture-o"></i> Photo Documentation</a></li>
+          <li><a href="admin_transect.php"><i class="fa fa-paw"></i> Transect</a></li>
+      <li class="header">REPORTS</li>
       <li class="treeview">
         <a href="admin_approved_reports.php">
           <i class="fa fa-check-square-o"></i>
-          <span>Recently Approved Reports</span>
-        </a>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-book"></i> 
-          <span>View All Records</span>
-        </a>
-      </li>
-      <li>
-        <a href="admin_analysis.php">
-          <i class="fa fa-area-chart"></i> 
-          <span>Analysis of Reports</span>
+          <span>View All Reports</span>
         </a>
       </li>
       <li class="header">GUIDES</li>
