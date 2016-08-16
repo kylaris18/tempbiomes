@@ -269,13 +269,18 @@
               locality[0] = result[0]['twalk_location'][0];
 
               for (var i = 1; i < result[0]['twalk_location'].length; i++) {
-                for (var j = 0; j < locality.length; j++) {
-                  if (locality[j] != result[0]['twalk_location'][i-1]) {
-                    var locIndex = locality.length;
-                    locality[locIndex] = result[0]['twalk_location'][i];
+                var toadd = true;
+                for (var j = 0; j < locality.length; j++) {   
+                  if (locality[j] == result[0]['twalk_location'][i]) {
+                    toadd = false;
                   }
                 }
+                if (toadd) {
+                  var locIndex = locality.length;
+                  locality[locIndex] = result[0]['twalk_location'][i];
+                }
               }
+
 
               console.log(locality);
 
@@ -405,11 +410,15 @@
               locality[0] = result[0]['tswim_location'][0];
 
               for (var i = 1; i < result[0]['tswim_location'].length; i++) {
-                for (var j = 0; j < locality.length; j++) {
-                  if (locality[j] != result[0]['tswim_location'][i-1]) {
-                    var locIndex = locality.length;
-                    locality[locIndex] = result[0]['tswim_location'][i];
+                var toadd = true;
+                for (var j = 0; j < locality.length; j++) {   
+                  if (locality[j] == result[0]['tswim_location'][i]) {
+                    toadd = false;
                   }
+                }
+                if (toadd) {
+                  var locIndex = locality.length;
+                  locality[locIndex] = result[0]['tswim_location'][i];
                 }
               }
 
@@ -548,11 +557,15 @@
               locality[0] = result[0]['tcruise_location'][0];
 
               for (var i = 1; i < result[0]['tcruise_location'].length; i++) {
-                for (var j = 0; j < locality.length; j++) {
-                  if (locality[j] != result[0]['tcruise_location'][i-1]) {
-                    var locIndex = locality.length;
-                    locality[locIndex] = result[0]['tcruise_location'][i];
+                var toadd = true;
+                for (var j = 0; j < locality.length; j++) {   
+                  if (locality[j] == result[0]['tcruise_location'][i]) {
+                    toadd = false;
                   }
+                }
+                if (toadd) {
+                  var locIndex = locality.length;
+                  locality[locIndex] = result[0]['tcruise_location'][i];
                 }
               }
 

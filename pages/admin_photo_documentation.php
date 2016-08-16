@@ -214,11 +214,15 @@
               locality[0] = result[0]['pde_locality'][0];
 
               for (var i = 1; i < result[0]['pde_locality'].length; i++) {
-                for (var j = 0; j < locality.length; j++) {
-                  if (locality[j] != result[0]['pde_locality'][i-1]) {
-                    var locIndex = locality.length;
-                    locality[locIndex] = result[0]['pde_locality'][i];
+                var toadd = true;
+                for (var j = 0; j < locality.length; j++) {   
+                  if (locality[j] == result[0]['pde_locality'][i]) {
+                    toadd = false;
                   }
+                }
+                if (toadd) {
+                  var locIndex = locality.length;
+                  locality[locIndex] = result[0]['pde_locality'][i];
                 }
               }
 
